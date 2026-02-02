@@ -1,0 +1,104 @@
+/* SECTION */
+.content-flow {
+  background: #ffffff;
+  padding: 80px 0;
+}
+
+/* LAYOUT */
+.flow-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+/* LEFT COLUMN */
+.flow-left {
+  width: 260px;
+}
+
+.flow-item {
+  padding: 12px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 500;
+  color: #475569;
+  transition: all 0.2s ease;
+}
+
+.flow-item:hover,
+.flow-item.active {
+  background: #e0f2fe;
+  color: #0284c7;
+  transform: translateX(6px);
+}
+
+/* BOARD */
+.flow-board {
+  position: relative;
+  width: 720px;
+  height: 420px;
+  background: #ffffff;
+  border-radius: 28px;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.12);
+  overflow: hidden;
+}
+
+/* GRID */
+.flow-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* TILE WRAPPER — CORRECT BRICK TILT */
+.tile-wrapper {
+  position: absolute;
+  transform: rotateX(55deg) rotateZ(45deg);
+  transform-style: preserve-3d;
+  transition: transform 0.25s ease;
+}
+
+.tile-wrapper.is-active {
+  transform: rotateX(55deg) rotateZ(45deg) translateY(-6px);
+}
+
+/* TILE TOP */
+.tile {
+  width: 150px;
+  height: 70px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  z-index: 2;
+}
+
+/* TILE COLORS */
+.tile-gray   { background: #e5e7eb; color: #1f2937; }
+.tile-blue   { background: #bfdbfe; color: #1e3a8a; }
+.tile-purple { background: #e9d5ff; color: #5b21b6; }
+.tile-yellow { background: #fef08a; color: #854d0e; }
+
+/* TILE BASE (REAL DEPTH, NOT SHADOW) */
+.tile-base {
+  position: absolute;
+  width: 150px;
+  height: 70px;
+  border-radius: 16px;
+  background: rgba(0,0,0,0.18);
+  transform: translate(12px, 10px);
+  z-index: 1;
+}
+
+/* CONNECTOR */
+.connector {
+  position: absolute;
+  border: 1.5px dashed #94a3b8;
+  border-radius: 14px;
+}

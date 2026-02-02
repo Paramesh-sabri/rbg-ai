@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ================= ARCHITECTURE ONLY ================= */
+
+.arch-scope {
+  display: flex;
+  justify-content: center;
+  padding: 60px 0;
+  background: transparent;
+}
+
+/* SCENE */
+.arch-scope .scene {
+  perspective: 1400px;
+}
+
+/* BOARD */
+.arch-scope .board {
+  position: relative;
+  width: 720px;
+  height: 420px;
+  background: #ffffff;
+  border-radius: 28px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+
+/* GRID */
+.arch-scope .grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,0,0,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.06) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+}
+
+/* TILE WRAPPER */
+.arch-scope .tile-wrapper {
+  position: absolute;
+  transform-style: preserve-3d;
+  transform: rotateX(55deg) rotateZ(45deg);
+}
+
+/* TILE */
+.arch-scope .tile {
+  width: 150px;
+  height: 70px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  z-index: 3;
+}
+
+/* TILE DEPTH */
+.arch-scope .tile-shadow {
+  position: absolute;
+  width: 150px;
+  height: 70px;
+  border-radius: 16px;
+  transform: translate(14px, 10px);
+  background: rgba(0, 0, 0, 0.18);
+  z-index: 1;
+}
+
+/* CONNECTORS */
+.arch-scope .connector {
+  position: absolute;
+  border: 1.5px dashed #9ca3af;
+  border-radius: 12px;
+}
