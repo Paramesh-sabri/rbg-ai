@@ -69,16 +69,20 @@ export default function Navbar() {
           <img
             src={logo}
             alt="RBG AI"
-            className="h-8 w-auto cursor-pointer"
+            className="h-8 w-10 cursor-pointer"
             onClick={() => {
               setMobileOpen(false);
-              navigate("/app");
             }}
           />
 
           {/* DESKTOP NAV (UNCHANGED) */}
           <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-700">
-
+              {/* HOME */}
+          <button onClick={()=> navigate("/home")}
+            className="hover:text-blue-600 transition-colors"
+          >
+            Home
+          </button>
             <NavItem label="Products" open={productOpen}
               onEnter={() => { closeAll(); setProductOpen(true); }}
               onLeave={() => delayedClose(setProductOpen, "product")}
@@ -107,7 +111,12 @@ export default function Navbar() {
               <DevsDropdown />
             </NavItem>
 
-            <button className="hover:text-blue-600">Enterprise</button>
+            <button 
+            onClick={
+              () => navigate("/enterprise")
+            }
+            className="hover:text-blue-600">Enterprise</button>
+
             <button className="hover:text-blue-600">Pricing</button>
           </nav>
 
@@ -128,6 +137,10 @@ export default function Navbar() {
 
             {/* Contact Us */}
             <button
+              onClick={() => {
+                setMobileOpen(false);
+                navigate("/contact");
+              }}
               className="
                 border border-blue-600
                 px-4 py-2 rounded-md
@@ -141,22 +154,22 @@ export default function Navbar() {
               Contact Us
             </button>
 
-            {/* Log In */}
+
             <button
+              onClick={() => navigate("/login")}
               className="
                 border border-slate-300
                 px-4 py-2 rounded-md
-                transition-all duration-200 ease-out
-                hover:-translate-y-0.5
-                hover:shadow-md
                 hover:bg-slate-50
               "
             >
               Log In
             </button>
 
+
             {/* Sign Up Free */}
             <button
+              onClick={() => navigate("/signup")}
               className="
                 bg-blue-600
                 px-4 py-2 rounded-md
@@ -190,19 +203,82 @@ export default function Navbar() {
             </button>
           </div>
 
-          <div className="overflow-y-auto px-4 py-4">
-            <MobileSection title="Products"><MobileProduct /></MobileSection>
-            <MobileSection title="Solutions"><MobileSolutions /></MobileSection>
-            <MobileSection title="Resources"><MobileResources /></MobileSection>
-            <MobileSection title="Devs"><MobileDevs /></MobileSection>
+          <div className="overflow-y-auto px-4 py-4 space-y-4">
 
-            <div className="mt-6 space-y-3">
-              <button className="w-full border rounded-md py-2">Log In</button>
-              <button className="w-full bg-blue-600 text-white rounded-md py-2">
+            {/* HOME */}
+            <button
+              onClick={() => {
+                setMobileOpen(false);
+                navigate("/");
+              }}
+              className="w-full text-left py-3 font-medium text-slate-800"
+            >
+              Home
+            </button>
+
+            <MobileSection title="Products">
+              <MobileProduct />
+            </MobileSection>
+
+            <MobileSection title="Solutions">
+              <MobileSolutions />
+            </MobileSection>
+
+            <MobileSection title="Resources">
+              <MobileResources />
+            </MobileSection>
+
+            <MobileSection title="Devs">
+              <MobileDevs />
+            </MobileSection>
+
+            {/* STATIC LINKS */}
+            <button
+              className="w-full text-left py-3 font-medium text-slate-800"
+            >
+              Enterprise
+            </button>
+
+            <button
+              className="w-full text-left py-3 font-medium text-slate-800"
+            >
+              Pricing
+            </button>
+
+            <button
+              onClick={() => {
+                setMobileOpen(false);
+                navigate("/contact");
+              }}
+              className="w-full text-left py-3 font-medium text-blue-600"
+            >
+              Contact Us
+            </button>
+
+            {/* AUTH */}
+            <div className="pt-4 space-y-3">
+              <button
+                onClick={() => {
+                  setMobileOpen(false);
+                  navigate("/login");
+                }}
+                className="w-full border rounded-md py-2"
+              >
+                Log In
+              </button>
+
+              <button
+                onClick={() => {
+                  setMobileOpen(false);
+                  navigate("/signup");
+                }}
+                className="w-full bg-blue-600 text-white rounded-md py-2"
+              >
                 Sign Up Free
               </button>
             </div>
           </div>
+
         </div>
       )}
     </header>

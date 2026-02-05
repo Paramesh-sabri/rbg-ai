@@ -1,4 +1,9 @@
+import { useNavigate } from "react-router-dom";
+
 export default function HeroSection() {
+
+  const navigate=useNavigate()
+
   return (
     <section className="relative bg-white">
       <div
@@ -82,7 +87,7 @@ export default function HeroSection() {
           "
         >
           {/* Primary */}
-          <button
+          <button onClick={()=>navigate("/signup")}
             className="
               w-full sm:w-auto
               rounded-md

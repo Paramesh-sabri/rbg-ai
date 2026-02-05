@@ -3,6 +3,7 @@ import MainContent from "../components/MainContent";
 import ContentFlow from "../components/ContentFlow";
 import Journey from "../components/Journey";
 import TrustedAndCTA from "../components/TrustedAndCTA";
+import Enterprise from "./Enterprise";
 export default function Home() {
   return (
     <>
@@ -11,6 +12,7 @@ export default function Home() {
       <ContentFlow />
       <Journey />
       <TrustedAndCTA />
+      <Enterprise />
     </>
   );
 }
