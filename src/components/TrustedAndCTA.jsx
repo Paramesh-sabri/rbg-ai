@@ -1,4 +1,9 @@
+
+import { useNavigate } from "react-router-dom";
 export default function TrustedAndFeedback() {
+
+  const navigate=useNavigate();
+
   const feedbacks = [
     {
       text:
@@ -112,7 +117,9 @@ export default function TrustedAndFeedback() {
             </p>
 
             <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:justify-center">
-              <button className="rounded-md bg-blue-600 px-6 py-3 font-semibold text-white hover:bg-blue-700">
+              <button 
+              onClick={()=> navigate("/signup")}
+              className="rounded-md bg-blue-600 px-6 py-3 font-semibold text-white hover:bg-blue-700">
                 Sign Up Free
               </button>
               <button className="rounded-md border border-blue-600 px-6 py-3 font-semibold text-blue-600 hover:bg-blue-100">

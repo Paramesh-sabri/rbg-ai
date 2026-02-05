@@ -21,10 +21,14 @@ export default function Footer() {
 
             {/* SOCIALS */}
             <div className="mt-6 flex gap-4">
-              <SocialIcon icon={Github} color="hover:text-slate-900" />
+              <button onClick={()=> window.open("https://github.com/rbg-research")}><SocialIcon icon={Github} color="hover:text-slate-900" /></button>
               <SocialIcon icon={Twitter} color="hover:text-sky-500" />
-              <SocialIcon icon={Linkedin} color="hover:text-blue-600" />
-              <SocialIcon icon={Mail} color="hover:text-emerald-600" />
+              <button onClick={()=> window.open("https://www.linkedin.com/company/rbgai/posts/?feedView=all")}><SocialIcon icon={Linkedin} color="hover:text-blue-600" /></button>
+              <button
+                onClick={() => window.location.href = "mailto:contact@rbg.ai"}
+              >
+                <SocialIcon icon={Mail} color="hover:text-emerald-600" />
+              </button>
             </div>
           </div>
 

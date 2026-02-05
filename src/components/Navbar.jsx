@@ -1,6 +1,8 @@
 import { useState, useRef, useEffect } from "react";
 import { Menu, X, Search } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+
 
 import {
   Mic,
@@ -117,7 +119,7 @@ export default function Navbar() {
             }
             className="hover:text-blue-600">Enterprise</button>
 
-            <button className="hover:text-blue-600">Pricing</button>
+            <button onClick={()=> navigate("/pricing")} className="hover:text-blue-600">Pricing</button>
           </nav>
 
           {/* ACTIONS */}
@@ -302,13 +304,23 @@ function NavItem({ label, open, onEnter, onLeave, children }) {
 /* ================= DESKTOP DROPDOWNS ================= */
 
 function ProductDropdown() {
+  const navigate = useNavigate();
   return (
     <div className="absolute top-full left-0 mt-3 w-80 rounded-xl bg-white p-4 shadow-lg ring-1 ring-black/5 z-50">
       <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-slate-500">
         Products
       </p>
       <div className="space-y-1">
-        <ProductItem icon={Mic} title="Speech-to-Text" desc="Real-time transcription" />
+        <button
+          className="cursor-pointer"
+          onClick={() => navigate("/speech_to_text")}
+        >
+          <ProductItem
+            icon={Mic}
+            title="Speech-to-Text"
+            desc="Real-time transcription"
+          />
+        </button>
         <ProductItem icon={FileAudio} title="Audio Intelligence" desc="Understand audio at scale" />
         <ProductItem icon={MessageCircle} title="Conversational AI" desc="Voice-first experiences" />
         <ProductItem icon={Headphones} title="Voice Agents" desc="Automated voice support" />
