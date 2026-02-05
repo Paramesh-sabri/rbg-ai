@@ -10,7 +10,10 @@ import Signup from "./pages/Signup";
 import Enterprise from "./pages/Enterprise";
 import Pricing from "./pages/Pricing"
 
-import SpeechToText from "./components/products/Speech_to_text"
+import SpeechToText from "./components/products/SpeechToText"
+import TextToSpeech from "./components/products/TextToSpeech";
+import VoiceAgent from "./components/products/VoiceAgents";
+import AudioIntelligence from "./components/products/AudioIntelligence";
 
 export default function App() {
   return (
@@ -26,6 +29,9 @@ export default function App() {
         <Route path="/enterprise" element={<Enterprise />} />
         <Route path="/pricing" element={<Pricing />}/>
         <Route path="/speech_to_text" element={<SpeechToText />}/>
+        <Route path="/text_to_speech" element={<TextToSpeech />}/>
+        <Route path="/voice_agents" element={<VoiceAgent />}/>
+        <Route path="/audio_intelligence" element={<AudioIntelligence />}/>
       </Routes>
 
       <Footer />

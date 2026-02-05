@@ -1,13 +1,5 @@
 import { useState } from "react";
-import { Mic } from "lucide-react";
-
-
-const tabs = [
-  "Speech to Text",
-  "Text to Speech",
-  "Voice Agent",
-  "Audio Intelligence",
-];
+import { Mic, Upload, ChevronDown } from "lucide-react";
 
 const PANEL_HEIGHT = "min-h-[260px] md:min-h-[320px]";
 
@@ -15,8 +7,8 @@ export default function SpeechToText() {
   const [mode, setMode] = useState("flux");
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-11/12 mx-auto mt-10 mb-10">
+      
       {/* LEFT PANEL */}
       <div
         className={`rounded-xl border border-slate-200 p-4 ${PANEL_HEIGHT}

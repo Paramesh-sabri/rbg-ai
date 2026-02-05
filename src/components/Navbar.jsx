@@ -310,8 +310,8 @@ function ProductDropdown() {
       <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-slate-500">
         Products
       </p>
-      <div className="space-y-1">
-        <button
+      <div className="space-y-1 ">
+        <div
           className="cursor-pointer"
           onClick={() => navigate("/speech_to_text")}
         >
@@ -320,12 +320,22 @@ function ProductDropdown() {
             title="Speech-to-Text"
             desc="Real-time transcription"
           />
-        </button>
-        <ProductItem icon={FileAudio} title="Audio Intelligence" desc="Understand audio at scale" />
-        <ProductItem icon={MessageCircle} title="Conversational AI" desc="Voice-first experiences" />
-        <ProductItem icon={Headphones} title="Voice Agents" desc="Automated voice support" />
-        <ProductItem icon={BarChart3} title="Analytics" desc="Insights & metrics" />
-        <ProductItem icon={Shield} title="Security" desc="Enterprise-grade protection" />
+        </div>
+        <div
+          className="cursor-pointer"
+          onClick={() => navigate("/text_to_speech")}>
+          <ProductItem icon={MessageCircle} title="Conversational AI" desc="Voice-first experiences" />
+        </div>
+        <div
+          className="cursor-pointer"
+          onClick={() => navigate("/voice_agents")}>
+          <ProductItem icon={Headphones} title="Voice Agents" desc="Automated voice support" />
+        </div>
+        <div
+         className="cursor-pointer"
+         onClick={() => navigate("/audio_intelligence")}>
+          <ProductItem icon={FileAudio} title="Audio Intelligence" desc="Understand audio at scale" />
+        </div>
       </div>
     </div>
   );
@@ -342,45 +352,63 @@ function ProductItem({ icon: Icon, title, desc }) {
     </div>
   );
 }
-
+// -----------------------solutiondropdown--------------
 function SolutionsDropdown() {
   return (
-    <div className="absolute top-9 left-0 w-[40vw] max-w-5xl -translate-x-1/2 rounded-2xl bg-white p-6 shadow-xl ring-1 ring-black/5 z-50">
-      <div className="grid grid-cols-[220px_200px] gap-8">
-        <div className="space-y-3">
-          <SolutionItem icon={Phone} label="Contact Centers" />
-          <SolutionItem icon={HeartPulse} label="Healthcare Voice AI" />
-          <SolutionItem icon={FileText} label="Medical Transcription" />
-          <SolutionItem icon={MessageSquare} label="Conversational AI" />
-          <SolutionItem icon={Utensils} label="Restaurants" />
-          <SolutionItem icon={BarChart3} label="Speech Analytics" />
-          <SolutionItem icon={Play} label="Media Transcription" />
+    <div className="absolute top-9 left-0 w-[40vw] max-w-5xl -translate-x-1/2 
+    rounded-2xl bg-white p-6 shadow-xl ring-1 ring-black/5 z-50">
+      <div className="grid grid-cols-[1fr_1fr] gap-8 divide-x divide-slate-100">
+
+        {/* LEFT COLUMN */}
+        <div>
+          <p className="mb-4 text-sm font-semibold text-slate-500">
+            Use Cases
+          </p>
+
+          <div className="space-y-2">
+            <SolutionItem icon={Phone} label="Contact Centers" />
+            <SolutionItem icon={HeartPulse} label="Healthcare Voice AI" />
+            <SolutionItem icon={FileText} label="Medical Transcription" />
+            <SolutionItem icon={MessageSquare} label="Conversational AI" />
+            <SolutionItem icon={Utensils} label="Restaurants" />
+            <SolutionItem icon={BarChart3} label="Speech Analytics" />
+            <SolutionItem icon={Play} label="Media Transcription" />
+          </div>
         </div>
 
-        <div className="space-y-4">
-          <SolutionCard icon={Play} title="Powered by RBG" />
+        {/* RIGHT COLUMN */}
+        <div className="space-y-4 pl-6">
+          <SolutionCard icon={Sparkles} title="Powered by RBG" />
           <SolutionCard icon={User} title="Customers" />
           <SolutionCard icon={Users} title="Partners" />
           <SolutionCard icon={Rocket} title="Startup Program" />
         </div>
+
       </div>
     </div>
   );
 }
-
 const SolutionItem = ({ icon: Icon, label }) => (
-  <div className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-100 cursor-pointer">
+  <div className="flex items-center gap-3 rounded-lg px-3 py-2 cursor-pointer hover:bg-slate-100">
     <Icon className="h-5 w-5 text-slate-500" />
-    <span className="text-sm font-medium">{label}</span>
+    <span className="text-sm font-medium text-slate-900">
+      {label}
+    </span>
   </div>
 );
+
 
 const SolutionCard = ({ icon: Icon, title }) => (
-  <div className="flex items-center gap-4 rounded-xl border bg-slate-50 p-4 hover:shadow-md cursor-pointer">
-    <Icon className="h-6 w-6 text-slate-600" />
-    <span className="font-semibold">{title}</span>
+  <div className="flex items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 cursor-pointer hover:bg-slate-100">
+    <div className="flex h-9 w-9 items-center justify-center rounded-md bg-white border">
+      <Icon className="h-5 w-5 text-slate-600" />
+    </div>
+    <span className="text-sm font-medium text-slate-900">
+      {title}
+    </span>
   </div>
 );
+
 
 function ResourcesDropdown() {
   return (
