@@ -84,7 +84,7 @@ export default function ConvAi(){
                     <li className="flex gap-3">
                     <span className="mt-2 h-2 w-2 rounded-full bg-emerald-500 shrink-0" />
                     <span>
-                        Deepgram Voice Agent API orchestrates STT, TTS, and LLMs with
+                        RBG Voice Agent API orchestrates STT, TTS, and LLMs with
                         turn-taking, end-of-thought prediction, and barge-in support for
                         seamless conversational flow.
                     </span>
@@ -151,7 +151,7 @@ export default function ConvAi(){
                     <p className="mt-6 max-w-xl text-lg leading-relaxed text-slate-600">
                         Conversational AI agents are only as good as their ability to respond
                         instantly. Delays break the flow, frustrate users, and reduce trust.
-                        Deepgram’s streaming architecture delivers sub-second round-trip
+                        RBG’s streaming architecture delivers sub-second round-trip
                         latency across speech-to-text and text-to-speech, keeping your voice
                         agents natural, responsive, and humanlike even at scale.
                     </p>
@@ -171,7 +171,7 @@ export default function ConvAi(){
                     </h2>
 
                     <p className="mx-auto mt-6 max-w-2xl text-lg text-slate-600">
-                        Deepgram’s AI models are designed for the complexities of real-world
+                        RBG’s AI models are designed for the complexities of real-world
                         conversations, managing speech, timing, and turn taking to deliver
                         fluid, natural interactions.
                     </p>
@@ -259,7 +259,7 @@ export default function ConvAi(){
                 <div className="mx-auto max-w-4xl text-center">
 
                     <h2 className="text-4xl sm:text-5xl font-bold text-slate-900">
-                    Power conversational AI agents with Deepgram
+                    Power conversational AI agents with RBG
                     </h2>
 
                     <p className="mx-auto mt-6 max-w-2xl text-lg text-slate-600">
