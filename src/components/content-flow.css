@@ -1,104 +1,165 @@
-/* SECTION */
+/* ROOT */
 .content-flow {
-  background: #ffffff;
-  padding: 80px 0;
+  background: #f7f9fc;
+  padding: 40px;
+  color: #1f2937;
+  font-family: Inter, system-ui, sans-serif;
 }
 
 /* LAYOUT */
 .flow-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
+  display: grid;
+  grid-template-columns: 260px 1fr;
   gap: 40px;
-  align-items: flex-start;
+
+  max-width: 1200px;
+  margin: 0 auto;              /* 👈 centers horizontally */
+  padding: 0 24px;             /* 👈 side breathing space */
 }
 
-/* LEFT COLUMN */
+
+/* LEFT LIST */
 .flow-left {
-  width: 260px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
 }
 
 .flow-item {
-  padding: 12px 16px;
-  border-radius: 10px;
+  padding: 10px 14px;
+  border-left: 3px solid transparent;
   cursor: pointer;
-  font-weight: 500;
-  color: #475569;
-  transition: all 0.2s ease;
+  opacity: 0.6;
+  transition: all 200ms ease;
 }
 
 .flow-item:hover,
 .flow-item.active {
-  background: #e0f2fe;
-  color: #0284c7;
-  transform: translateX(6px);
+  opacity: 1;
+  border-left-color: #2563eb;
+  color: #2563eb;
+  background: rgba(37, 99, 235, 0.06);
+  border-radius: 6px;
 }
 
 /* BOARD */
 .flow-board {
   position: relative;
-  width: 720px;
-  height: 420px;
-  background: #ffffff;
-  border-radius: 28px;
-  box-shadow: 0 30px 60px rgba(0,0,0,0.12);
+  height: 520px;
+  width: 100%;                 /* 👈 fill available space */
+  max-width: 900px;            /* 👈 prevents over-stretch */
+  margin: 0 auto;              /* 👈 centers board itself */
+
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at top right, rgba(37,99,235,0.08), transparent 60%),
+    #ffffff;
+  box-shadow: 0 40px 80px rgba(15,23,42,0.08);
+  perspective: 1200px;
   overflow: hidden;
 }
 
-/* GRID */
-.flow-grid {
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px);
-  background-size: 40px 40px;
-}
 
-/* TILE WRAPPER — CORRECT BRICK TILT */
+/* TILE WRAPPER */
 .tile-wrapper {
   position: absolute;
-  transform: rotateX(55deg) rotateZ(45deg);
   transform-style: preserve-3d;
-  transition: transform 0.25s ease;
+  transform: rotateX(42deg) rotateZ(-30deg) translateZ(-20px);
+  transition: transform 400ms cubic-bezier(.2,.8,.2,1), opacity 300ms ease;
 }
 
+/* ACTIVE TILE */
 .tile-wrapper.is-active {
-  transform: rotateX(55deg) rotateZ(45deg) translateY(-6px);
+  transform: rotateX(42deg) rotateZ(-30deg) translateZ(35px);
 }
 
-/* TILE TOP */
+/* TILE */
 .tile {
-  width: 150px;
+  width: 160px;
   height: 70px;
   border-radius: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 600;
-  z-index: 2;
+  display: grid;
+  place-items: center;
+  font-weight: 500;
+  background: linear-gradient(145deg, #ffffff, #f1f5f9);
+  box-shadow: 0 18px 40px rgba(15,23,42,0.18);
 }
 
-/* TILE COLORS */
-.tile-gray   { background: #e5e7eb; color: #1f2937; }
-.tile-blue   { background: #bfdbfe; color: #1e3a8a; }
-.tile-purple { background: #e9d5ff; color: #5b21b6; }
-.tile-yellow { background: #fef08a; color: #854d0e; }
-
-/* TILE BASE (REAL DEPTH, NOT SHADOW) */
-.tile-base {
+/* SHADOW */
+.tile-shadow {
   position: absolute;
-  width: 150px;
-  height: 70px;
-  border-radius: 16px;
-  background: rgba(0,0,0,0.18);
-  transform: translate(12px, 10px);
-  z-index: 1;
+  inset: 0;
+  background: rgba(15,23,42,0.2);
+  filter: blur(16px);
+  transform: translateZ(-12px);
 }
 
-/* CONNECTOR */
-.connector {
+/* COLORS */
+.tile-blue   { background: linear-gradient(145deg, #e8efff, #dbe7ff); }
+.tile-purple{ background: linear-gradient(145deg, #f2e8ff, #e7dbff); }
+.tile-yellow{ background: linear-gradient(145deg, #fff7db, #ffefc2); }
+
+/* DEEP TILE (TTS) */
+.tile-wrapper.is-deep {
+  transform: rotateX(42deg) rotateZ(-30deg) translateZ(-5px);
+}
+
+.tile-wrapper.is-deep.is-active {
+  transform: rotateX(42deg) rotateZ(-30deg) translateZ(55px);
+}
+
+/* SVG PATHS */
+.flow-paths {
   position: absolute;
-  border: 1.5px dashed #94a3b8;
-  border-radius: 14px;
+  inset: 0;
+  pointer-events: none;
+}
+
+.flow-path {
+  fill: none;
+  stroke: rgba(37,99,235,0.25);
+  stroke-width: 2;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  opacity: 0;
+}
+
+.flow-path.active {
+  opacity: 1;
+  stroke: rgba(37,99,235,0.9);
+  animation: draw-line 600ms ease forwards;
+  filter: drop-shadow(0 0 6px rgba(37,99,235,0.4));
+}
+
+@keyframes draw-line {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+
+@media (max-width: 1024px) {
+  .flow-container {
+    grid-template-columns: 1fr;
+  }
+
+  .flow-left {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+  }
+
+  .flow-item {
+    border-left: none;
+    border-bottom: 2px solid transparent;
+  }
+
+  .flow-item.active {
+    border-bottom-color: #2563eb;
+  }
+
+  .flow-board {
+    margin-top: 32px;
+  }
 }
