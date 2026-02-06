@@ -1,4 +1,36 @@
-import { Github, Twitter, Linkedin, Mail } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Github, Linkedin, Mail } from "lucide-react";
+
+/* =====================
+   ROUTE MAP
+===================== */
+const FOOTER_ROUTES = {
+  // Product
+  "Speech to Text": "/speech_to_text",
+  "Text to Speech": "/text_to_speech",
+  "Voice Agents": "/voice_agents",
+  "Audio Intelligence": "/audio_intelligence",
+  Pricing: "/pricing",
+
+  // Solutions
+  "Contact Centers": "/contactcenters",
+  Enterprise: "/enterprise",
+  "Conversational AI": "/convai",
+  Startups: "/enterprise",
+  Partners: "/enterprise",
+
+  // Company
+  About: "/home",
+  Careers: "/home",
+  Blog: "/home",
+  Press: "/home",
+  Contact: "/contact",
+
+  // Legal
+  Privacy: "/privacy",
+  Terms: "/terms",
+  Security: "/security",
+};
 
 export default function Footer() {
   return (
@@ -21,13 +53,25 @@ export default function Footer() {
 
             {/* SOCIALS */}
             <div className="mt-6 flex gap-4">
-              <button onClick={()=> window.open("https://github.com/rbg-research")}><SocialIcon icon={Github} color="hover:text-slate-900" /></button>
-              <button onClick={()=> window.open("https://www.linkedin.com/company/rbgai/posts/?feedView=all")}><SocialIcon icon={Linkedin} color="hover:text-blue-600" /></button>
-              <button
-                onClick={() => window.location.href = "mailto:contact@rbg.ai"}
+              <a
+                href="https://github.com/rbg-research"
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                <SocialIcon icon={Mail} color="hover:text-emerald-600" />
-              </button>
+                <SocialIcon icon={Github} />
+              </a>
+
+              <a
+                href="https://www.linkedin.com/company/rbgai/posts/?feedView=all"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <SocialIcon icon={Linkedin} />
+              </a>
+
+              <a href="mailto:contact@rbg.ai">
+                <SocialIcon icon={Mail} />
+              </a>
             </div>
           </div>
 
@@ -50,8 +94,8 @@ export default function Footer() {
             color="text-emerald-600"
             links={[
               "Contact Centers",
-              "Healthcare",
               "Enterprise",
+              "Conversational AI",
               "Startups",
               "Partners",
             ]}
@@ -102,15 +146,16 @@ function FooterCol({ title, links, color }) {
       <h4 className={`text-sm font-semibold ${color}`}>
         {title}
       </h4>
+
       <ul className="mt-4 space-y-3">
-        {links.map((l) => (
-          <li key={l}>
-            <a
-              href="#"
+        {links.map((label) => (
+          <li key={label}>
+            <Link
+              to={FOOTER_ROUTES[label] || "/"}
               className="text-sm text-slate-600 hover:text-slate-900 transition"
             >
-              {l}
-            </a>
+              {label}
+            </Link>
           </li>
         ))}
       </ul>
@@ -120,20 +165,19 @@ function FooterCol({ title, links, color }) {
 
 function FooterLink({ text }) {
   return (
-    <a
-      href="#"
+    <Link
+      to={FOOTER_ROUTES[text] || "/"}
       className="text-slate-500 hover:text-blue-600 transition"
     >
       {text}
-    </a>
+    </Link>
   );
 }
 
-function SocialIcon({ icon: Icon, color }) {
+function SocialIcon({ icon: Icon }) {
   return (
-    <a
-      href="#"
-      className={`
+    <div
+      className="
         flex h-9 w-9 items-center justify-center
         rounded-full
         border border-slate-200
@@ -142,10 +186,10 @@ function SocialIcon({ icon: Icon, color }) {
         transition
         hover:bg-blue-50
         hover:border-blue-300
-        ${color}
-      `}
+        hover:text-blue-600
+      "
     >
       <Icon className="h-4 w-4" />
-    </a>
+    </div>
   );
 }
