@@ -6,7 +6,7 @@ export default function Login() {
 
   return (
     <div className="min-h-screen bg-slate-50 flex items-center justify-center px-4">
-      <div className="w-full max-w-md rounded-2xl bg-white border border-slate-200 shadow-sm p-8">
+      <div className="w-full max-w-md rounded-2xl bg-white border border-slate-200 shadow-sm p-8 mt-10 mb-10">
 
         {/* BRAND */}
         <h1 className="text-center text-2xl font-bold text-slate-900">

@@ -10,6 +10,7 @@ import {
   HeartPulse,
   BookOpen,
 } from "lucide-react";
+import enterpriseVisual from "../assets/enterprise-hero.png";
 
 export default function Enterprise() {
   return (
@@ -17,7 +18,7 @@ export default function Enterprise() {
 
       {/* ================= HERO ================= */}
       <section className="px-6 py-24">
-        <div className="mx-auto max-w-7xl grid lg:grid-cols-2 gap-16 items-center">
+        <div className="mx-auto max-w-6xl grid lg:grid-cols-2 gap-16 items-center">
 
           <div>
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900">
@@ -40,9 +41,14 @@ export default function Enterprise() {
             </div>
           </div>
 
-          <div className="h-80 rounded-2xl bg-gradient-to-br from-blue-50 to-teal-50 flex items-center justify-center">
-            <Gauge className="h-20 w-20 text-blue-600" />
+          <div className="flex justify-center">
+            <img
+              src={enterpriseVisual}
+              alt="Enterprise Voice AI visualization"
+              className="w-full max-w-lg rounded-2xl"
+            />
           </div>
+
 
         </div>
       </section>

@@ -1,16 +1,15 @@
 import { useState, useRef, useEffect } from "react";
 import { Menu, X, Search } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
 
 
 import {
   Mic,
+  Github,
   FileAudio,
   MessageCircle,
   Headphones,
   BarChart3,
-  Shield,
   Phone,
   HeartPulse,
   FileText,
@@ -37,6 +36,25 @@ import logo from "../assets/rbg-logo.svg";
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const navigate = useNavigate();
+  const [query, setQuery] = useState("");
+  const [searchOpen, setSearchOpen] = useState(false);
+  const searchInputRef = useRef(null);
+
+  const handleSearch = () => {
+    if (!query.trim()) return;
+
+    window.find(query);
+
+    // close search after finding
+    setQuery("");
+    setSearchOpen(false);
+  };
+  useEffect(() => {
+    if (searchOpen && searchInputRef.current) {
+      searchInputRef.current.focus();
+    }
+  }, [searchOpen]);
+
 
   const [productOpen, setProductOpen] = useState(false);
   const [solutionsOpen, setSolutionsOpen] = useState(false);
@@ -126,16 +144,37 @@ export default function Navbar() {
           <div className="hidden md:flex items-center gap-3">
 
             {/* Search */}
-            <Search
-              className="
-                h-5 w-5 cursor-pointer
-                text-slate-600
-                transition-all duration-200 ease-out
-                hover:text-blue-600
-                hover:-translate-y-0.5
-                hover:scale-105
-              "
-            />
+            <div className="relative flex items-center">
+              {/* INPUT */}
+              <input
+                ref={searchInputRef}
+                type="text"
+                placeholder="Search page..."
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && handleSearch()}
+                className={`
+                  h-9 text-sm outline-none
+                  border border-slate-300 rounded-md
+                  transition-all duration-300 ease-in-out
+                  px-3
+                  ${searchOpen ? "w-40 opacity-100 mr-2" : "w-0 opacity-0 px-0 border-transparent"}
+                `}
+              />
+
+              {/* ICON */}
+              <Search
+                onClick={() => setSearchOpen((prev) => !prev)}
+                className="
+                  h-5 w-5 cursor-pointer
+                  text-slate-600
+                  transition-all duration-200
+                  hover:text-blue-600
+                  hover:scale-105
+                "
+              />
+            </div>
+
 
             {/* Contact Us */}
             <button
@@ -354,6 +393,7 @@ function ProductItem({ icon: Icon, title, desc }) {
 }
 // -----------------------solutiondropdown--------------
 function SolutionsDropdown() {
+  const navigate = useNavigate();
   return (
     <div className="absolute top-9 left-0 w-[40vw] max-w-5xl -translate-x-1/2 
     rounded-2xl bg-white p-6 shadow-xl ring-1 ring-black/5 z-50">
@@ -366,10 +406,11 @@ function SolutionsDropdown() {
           </p>
 
           <div className="space-y-2">
-            <SolutionItem icon={Phone} label="Contact Centers" />
+
+            <SolutionItem onClick={()=>navigate("/contactcenters")} icon={Phone} label="Contact Centers" />
             <SolutionItem icon={HeartPulse} label="Healthcare Voice AI" />
             <SolutionItem icon={FileText} label="Medical Transcription" />
-            <SolutionItem icon={MessageSquare} label="Conversational AI" />
+            <SolutionItem onClick={()=>navigate("/convai")} icon={MessageSquare} label="Conversational AI" />
             <SolutionItem icon={Utensils} label="Restaurants" />
             <SolutionItem icon={BarChart3} label="Speech Analytics" />
             <SolutionItem icon={Play} label="Media Transcription" />
@@ -388,8 +429,9 @@ function SolutionsDropdown() {
     </div>
   );
 }
-const SolutionItem = ({ icon: Icon, label }) => (
-  <div className="flex items-center gap-3 rounded-lg px-3 py-2 cursor-pointer hover:bg-slate-100">
+const SolutionItem = ({ icon: Icon, label, onClick }) => (
+
+    <div onClick={onClick} className="flex items-center gap-3 rounded-lg px-3 py-2 cursor-pointer hover:bg-slate-100">
     <Icon className="h-5 w-5 text-slate-500" />
     <span className="text-sm font-medium text-slate-900">
       {label}
@@ -465,7 +507,14 @@ function DevsDropdown() {
 
         <div className="space-y-4">
           <DevCard icon={Sparkles} title="Playground" highlight />
-          <DevCard icon={Users} title="Community" />
+          <div onClick={() => window.open("https://github.com/rbg-research", "_blank")}>
+            <DevCard
+            icon={Github}
+            title="Community"
+          />
+          </div>
+          
+
         </div>
 
       </div>
