@@ -2,14 +2,56 @@ import { useState } from "react";
 import "./content-flow.css";
 
 const ITEMS = [
-  { id: "user", label: "User" },
-  { id: "audio", label: "Audio Input" },
-  { id: "stt", label: "Speech to Text" },
-  { id: "llm", label: "LLM Orchestration" },
-  { id: "tts", label: "Text to Speech" },
-  { id: "voice", label: "Voice Agent API" },
-  { id: "biz", label: "Business Logic" },
-  { id: "ext", label: "External Systems" }
+  {
+    id: "user",
+    label: "User",
+    description: "Your customer or end user speaking naturally."
+  },
+  {
+    id: "audio",
+    label: "Audio Input",
+    description:
+      "Partner-provided transport layer that bridges stream audio into Deepgram's APIs and plays back TTS audio to the end user, including Telephony partners (via PSTN/SIP)."
+  },
+  {
+    id: "stt",
+    label: "Speech to Text (STT)",
+    description:
+      "Conversational speech recognition that detects end-of-turn and interruptions, and streams transcripts in real-time."
+  },
+  {
+    id: "llm",
+    label: "LLM orchestration",
+    description: (
+      <>
+        <ul>
+          <li><strong>Context:</strong> Maintains conversation history and system settings.</li>
+          <li><strong>System Updates:</strong> Adjusts role or behavior.</li>
+          <li><strong>Prompt Updates:</strong> Refines instructions in real time.</li>
+          <li><strong>Response Injections:</strong> Adds guidance or context.</li>
+          <li><strong>Function Calling:</strong> Executes actions or fetches data.</li>
+          <li><strong>LLM (via API):</strong> Connects to language models.</li>
+        </ul>
+      </>
+    )
+  },
+  {
+    id: "tts",
+    label: "Text to Speech (TTS)",
+    description: "Converts AI responses into natural-sounding speech."
+  },
+  {
+    id: "biz",
+    label: "Business logic",
+    description:
+      "Your custom application logic. Executes domain-specific actions, integrates external APIs, or adds validation."
+  },
+  {
+    id: "ext",
+    label: "External systems",
+    description:
+      "Databases, APIs, and back-office systems that the agent interacts with. Results are fed back into the conversation context."
+  }
 ];
 
 const FLOW_CHAINS = {
@@ -21,7 +63,10 @@ const FLOW_CHAINS = {
 };
 
 export default function ContentFlow() {
-  const [active, setActive] = useState(null);
+  const [active, setActive] = useState(null);   // click
+  const [hovered, setHovered] = useState(null); // hover
+
+  const focus = hovered || active;
 
   return (
     <section className="content-flow">
@@ -29,31 +74,46 @@ export default function ContentFlow() {
 
         {/* LEFT COLUMN */}
         <div className="flow-left">
-          {ITEMS.map(item => (
-            <div
-              key={item.id}
-              className={`flow-item ${active === item.id ? "active" : ""}`}
-              onMouseEnter={() => setActive(item.id)}
-              onMouseLeave={() => setActive(null)}
-            >
-              {item.label}
-            </div>
-          ))}
+          {ITEMS.map(item => {
+            const isOpen = active === item.id;
+
+            return (
+              <div key={item.id} className={`flow-accordion ${isOpen ? "open" : ""}`}>
+                <button
+                  className="flow-header"
+                  onClick={() => setActive(isOpen ? null : item.id)}
+                  onMouseEnter={() => setHovered(item.id)}
+                  onMouseLeave={() => setHovered(null)}
+                >
+                  <span className="dot" />
+                  <span className="label">{item.label}</span>
+                  <span className="arrow" />
+                </button>
+
+                <div className="flow-content">
+                  {item.description}
+                </div>
+              </div>
+            );
+          })}
+           <button className="try-button">
+             Try it now
+            </button>
         </div>
 
         {/* RIGHT BOARD */}
-        <div className={`flow-board ${active ? "has-active" : ""}`}>
+        <div className={`flow-board ${focus ? "has-active" : ""}`}>
 
-          <FlowPaths active={active} />
+          <FlowPaths active={focus} />
 
-          <Tile id="user"  active={active} x={80}  y={40}>User</Tile>
-          <Tile id="audio" active={active} x={180} y={120}>Audio Input</Tile>
-          <Tile id="stt" active={active} x={370} y={180} color="blue">STT API</Tile>
-          <Tile id="tts" active={active} x={220} y={270} color="purple" deep>TTS API</Tile>
-          <Tile id="llm"   active={active} x={360} y={300} color="yellow">LLM</Tile>
-          <Tile id="voice" active={active} x={520} y={260}>Voice Agent</Tile>
-          <Tile id="ext"   active={active} x={140} y={380}>External Systems</Tile>
-          <Tile id="biz"   active={active} x={400} y={380}>Business Logic</Tile>
+          <Tile id="user"  active={focus} x={80}  y={40}>User</Tile>
+          <Tile id="audio" active={focus} x={180} y={120}>Audio Input</Tile>
+          <Tile id="stt"   active={focus} x={370} y={180} color="blue">STT API</Tile>
+          <Tile id="tts"   active={focus} x={220} y={270} color="purple" deep>TTS API</Tile>
+          <Tile id="llm"   active={focus} x={360} y={300} color="yellow">LLM</Tile>
+          <Tile id="voice" active={focus} x={520} y={260}>Voice Agent</Tile>
+          <Tile id="ext"   active={focus} x={140} y={380}>External Systems</Tile>
+          <Tile id="biz"   active={focus} x={400} y={380}>Business Logic</Tile>
 
         </div>
       </div>
@@ -88,6 +148,13 @@ function FlowPaths({ active }) {
 
   return (
     <svg className="flow-paths" viewBox="0 0 800 520">
+      <defs>
+        <linearGradient id="flowGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="#2563eb" />
+          <stop offset="100%" stopColor="#9333ea" />
+        </linearGradient>
+      </defs>
+
       {paths.map((p, i) => {
         const isActive =
           active &&
@@ -98,8 +165,8 @@ function FlowPaths({ active }) {
           <path
             key={i}
             d={curve(p.fromXY, p.toXY)}
-            className={`flow-path ${isActive ? "active" : ""}`}
-            style={{ animationDelay: `${i * 120}ms` }}
+            className={`flow-path ${isActive ? "active" : "idle"}`}
+            style={{ stroke: "url(#flowGradient)" }}
           />
         );
       })}

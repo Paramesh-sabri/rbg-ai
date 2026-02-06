@@ -1,9 +1,11 @@
 /* ROOT */
 .content-flow {
-  background: #f7f9fc;
   padding: 40px;
   color: #1f2937;
   font-family: Inter, system-ui, sans-serif;
+  max-width: 1200px;
+  margin: 0 auto;            
+
 }
 
 /* LAYOUT */
@@ -13,8 +15,8 @@
   gap: 40px;
 
   max-width: 1200px;
-  margin: 0 auto;              /* 👈 centers horizontally */
-  padding: 0 24px;             /* 👈 side breathing space */
+  margin: 0 auto;       
+  padding: 0 24px;           
 }
 
 
@@ -117,18 +119,25 @@
 
 .flow-path {
   fill: none;
-  stroke: rgba(37,99,235,0.25);
   stroke-width: 2;
-  stroke-dasharray: 1000;
-  stroke-dashoffset: 1000;
-  opacity: 0;
+  stroke-linecap: round;
+  stroke-dasharray: 4 6;
+  opacity: 0.55;
+  transition:
+    stroke 300ms ease,
+    stroke-width 300ms ease,
+    opacity 300ms ease,
+    filter 300ms ease;
+}
+.flow-path.idle {
+  stroke: linear-gradient(#2563eb, #9333ea);
 }
 
 .flow-path.active {
+  stroke-width: 2.5;
+  stroke-dasharray: none;
   opacity: 1;
-  stroke: rgba(37,99,235,0.9);
-  animation: draw-line 600ms ease forwards;
-  filter: drop-shadow(0 0 6px rgba(37,99,235,0.4));
+  filter: drop-shadow(0 0 6px rgba(37,99,235,0.35));
 }
 
 @keyframes draw-line {
@@ -162,4 +171,127 @@
   .flow-board {
     margin-top: 32px;
   }
+}
+
+@keyframes dash-flow {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: -20;
+  }
+}
+
+.flow-path.idle {
+  animation: dash-flow 2.5s linear infinite;
+}
+/* ACCORDION ITEM */
+.flow-accordion {
+  border-left: 2px solid rgba(34,197,94,0.35);
+  padding-left: 16px;
+}
+
+/* HEADER */
+.flow-header {
+  all: unset;
+  cursor: pointer;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  color: #0f172a;
+  font-weight: 500;
+}
+
+/* GREEN DOT */
+.flow-header .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #22c55e;
+  flex-shrink: 0;
+}
+
+/* LABEL */
+.flow-header .label {
+  flex: 1;
+}
+
+/* ARROW */
+.flow-header .arrow {
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid #64748b;
+  border-bottom: 2px solid #64748b;
+  transform: rotate(-45deg);
+  transition: transform 200ms ease;
+}
+
+/* OPEN STATE */
+.flow-accordion.open .arrow {
+  transform: rotate(45deg);
+}
+
+/* CONTENT */
+.flow-content {
+  max-height: 0;
+  overflow: hidden;
+  font-size: 14px;
+  color: #475569;
+  line-height: 1.6;
+  transition: max-height 300ms ease, opacity 200ms ease;
+  opacity: 0;
+}
+
+/* OPEN CONTENT */
+.flow-accordion.open .flow-content {
+  max-height: 500px;
+  opacity: 1;
+  padding-bottom: 12px;
+}
+
+/* LIST STYLING */
+.flow-content ul {
+  padding-left: 16px;
+}
+
+.flow-content li {
+  margin-bottom: 6px;
+}
+/* TRY IT NOW BUTTON */
+.try-button {
+  margin-top: 24px;
+  align-self: flex-start;
+
+  padding: 12px 20px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+
+  background: #2563eb;
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 14px;
+
+  box-shadow:
+    0 8px 24px rgba(37, 99, 235, 0.35);
+
+  transition:
+    transform 150ms ease,
+    box-shadow 150ms ease,
+    background 150ms ease;
+}
+
+.try-button:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+  box-shadow:
+    0 12px 30px rgba(37, 99, 235, 0.45);
+}
+
+.try-button:active {
+  transform: translateY(0);
+  box-shadow:
+    0 6px 18px rgba(37, 99, 235, 0.35);
 }
