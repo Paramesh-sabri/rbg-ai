@@ -6,11 +6,11 @@ import TrustedAndCTA from "../components/TrustedAndCTA";
 export default function Home() {
   return (
     <>
-      {/* <HeroSection />
-      <MainContent /> */}
+      <HeroSection />
+      <MainContent />
       <ContentFlow />
-      {/* <Journey />
-      <TrustedAndCTA /> */}
+      <Journey />
+      <TrustedAndCTA />
     </>
   );
 }
