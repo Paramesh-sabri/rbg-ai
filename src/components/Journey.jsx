@@ -1,10 +1,8 @@
-import {
-  Code2,
-  Plug,
-  SlidersHorizontal,
-  ArrowRight,
-} from "lucide-react";
+import {  ArrowRight } from "lucide-react";
 import enterpriseVisual from "../assets/enterprise-hero.png";
+import api from "../assets/journey-api.png"
+import integ from "../assets/journey-integrate.png"
+import custom from "../assets/journey-custom.png"
 
 
 export default function Journey() {
@@ -30,10 +28,10 @@ export default function Journey() {
         {/* =======================
             JOURNEY CARDS
         ======================= */}
-        <div className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
 
           <JourneyCard
-            icon={Code2}
+            icon={api}
             title="Build with APIs"
             desc="Voice AI infrastructure for builders."
             sub="For developers and product teams ready to move fast with flexible APIs."
@@ -41,7 +39,7 @@ export default function Journey() {
           />
 
           <JourneyCard
-            icon={Plug}
+            icon={integ}
             title="Integrate RBG"
             desc="Voice AI for platforms & partners."
             sub="For platforms embedding enterprise-grade Voice AI."
@@ -49,7 +47,7 @@ export default function Journey() {
           />
 
           <JourneyCard
-            icon={SlidersHorizontal}
+            icon={custom}
             title="Custom models"
             desc="Voice AI solutions built with you."
             sub="For enterprises with unique workflows and compliance needs."
@@ -107,34 +105,59 @@ export default function Journey() {
    SUB COMPONENTS
 ======================= */
 
-function JourneyCard({ icon: Icon, title, desc, sub, btn }) {
+function JourneyCard({ icon, title, desc, sub, btn }) {
   return (
-    <div className="rounded-2xl border border-slate-200 p-6 hover:shadow-md transition">
-      <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-blue-50">
-        <Icon className="h-6 w-6 text-blue-600" />
+    <div
+      className="
+        flex flex-col h-full
+        rounded-3xl border border-slate-200
+        bg-white
+        px-8 pt-6 pb-8
+        transition
+        hover:shadow-lg hover:-translate-y-0.5
+      "
+    >
+      {/* ICON */}
+      <div className="mb-6 w-full rounded-xl bg-white p-4">
+        <img
+          src={icon}
+          alt={title}
+          className="w-full h-[120px] object-contain"
+        />
       </div>
 
-      <h3 className="text-lg font-semibold text-slate-900">{title}</h3>
-      <p className="mt-1 text-sm font-medium text-slate-700">{desc}</p>
-      <p className="mt-2 text-sm text-slate-500">{sub}</p>
 
-      <button className="mt-6 rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-500">
+
+      {/* TEXT */}
+      <h3 className="text-xl font-semibold text-slate-900">
+        {title}
+      </h3>
+
+      <p className="mt-2 text-sm font-medium text-slate-700">
+        {desc}
+      </p>
+
+      <p className="mt-3 text-sm leading-relaxed text-slate-500">
+        {sub}
+      </p>
+
+      {/* SPACER */}
+      <div className="flex-1" />
+
+      {/* CTA */}
+      <button
+        className="
+          inline-flex w-fit
+          rounded-md bg-blue-600
+          px-5 py-2.5
+          text-sm font-semibold text-white
+          hover:bg-blue-500
+          transition
+        "
+      >
         {btn}
       </button>
     </div>
   );
 }
 
-function ScaleCard({ icon: Icon, title }) {
-  return (
-    <div className="rounded-xl border border-slate-200 p-6 text-center hover:shadow-md transition">
-      <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-blue-50">
-        <Icon className="h-6 w-6 text-blue-600" />
-      </div>
-
-      <p className="text-sm font-medium text-slate-700">
-        {title}
-      </p>
-    </div>
-  );
-}

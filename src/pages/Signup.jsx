@@ -1,5 +1,12 @@
 import { useState } from "react";
-import { Eye, EyeOff } from "lucide-react";
+import {
+  Eye,
+  EyeOff,
+  Mic,
+  MessageSquare,
+  Volume2,
+  Sparkles,
+} from "lucide-react";
 
 export default function Signup() {
   const [showPassword, setShowPassword] = useState(false);
@@ -8,7 +15,7 @@ export default function Signup() {
     <main className="min-h-[calc(100vh-64px-80px)] bg-slate-50">
       <div className="mx-auto max-w-6xl px-6 py-16 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
 
-        {/* LEFT CONTENT */}
+        {/* ================= LEFT CONTENT ================= */}
         <div>
           <h1 className="text-4xl font-bold text-slate-900 leading-tight">
             Build voice AI faster with{" "}
@@ -16,18 +23,44 @@ export default function Signup() {
           </h1>
 
           <p className="mt-4 text-slate-600 text-lg">
-            Create an account to access Speech-to-Text, Text-to-Speech,
-            Voice Agents, and Audio Intelligence APIs.
+            Get $200 in credit absolutely free. That can fuel a voice agent for
+            at least 50 hours. No credit card needed.
           </p>
 
-          <ul className="mt-6 space-y-3 text-slate-600">
-            <li>✅ Free tier to get started</li>
-            <li>✅ Enterprise-ready infrastructure</li>
-            <li>✅ Simple APIs & fast onboarding</li>
-          </ul>
+          {/* ===== APIs FOR (INLINE) ===== */}
+          <div className="mt-8">
+            <p className="mb-6 text-sm font-semibold text-slate-700">
+              APIs for:
+            </p>
+
+            <div className="flex flex-wrap items-center gap-14">
+              {/* Speech → Text */}
+              <ApiFlow
+                leftIcon={Mic}
+                rightIcon={MessageSquare}
+                label="Speech to Text"
+                color="blue"
+              />
+
+              {/* Text → Speech */}
+              <ApiFlow
+                leftIcon={MessageSquare}
+                rightIcon={Volume2}
+                label="Text to Speech"
+                color="pink"
+              />
+
+              {/* Voice Agent */}
+              <SingleApi
+                icon={Sparkles}
+                label="Voice Agent"
+                color="violet"
+              />
+            </div>
+          </div>
         </div>
 
-        {/* RIGHT CARD */}
+        {/* ================= RIGHT CARD ================= */}
         <div className="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm">
           <h2 className="text-2xl font-semibold text-slate-900">
             Create your account
@@ -42,7 +75,6 @@ export default function Signup() {
 
           {/* SOCIAL LOGIN */}
           <div className="mt-6 grid grid-cols-3 gap-3">
-            {/* GOOGLE */}
             <button className="flex flex-col items-center gap-2 rounded-xl border border-slate-200 py-4 hover:bg-slate-50 transition">
               <img
                 src="https://www.svgrepo.com/show/475656/google-color.svg"
@@ -52,7 +84,6 @@ export default function Signup() {
               <span className="text-sm font-medium">Google</span>
             </button>
 
-            {/* GITHUB */}
             <button className="flex flex-col items-center gap-2 rounded-xl border border-slate-200 py-4 hover:bg-slate-50 transition">
               <img
                 src="https://www.svgrepo.com/show/512317/github-142.svg"
@@ -62,7 +93,6 @@ export default function Signup() {
               <span className="text-sm font-medium">GitHub</span>
             </button>
 
-            {/* MICROSOFT */}
             <button className="flex flex-col items-center gap-2 rounded-xl border border-slate-200 py-4 hover:bg-slate-50 transition">
               <svg width="24" height="24" viewBox="0 0 24 24">
                 <rect x="1" y="1" width="10" height="10" fill="#F25022" />
@@ -89,12 +119,7 @@ export default function Signup() {
             <input
               type="email"
               placeholder="you@company.com"
-              className="
-                mt-1 w-full rounded-md
-                border border-slate-300
-                px-3 py-2 text-sm
-                focus:outline-none focus:ring-2 focus:ring-blue-500
-              "
+              className="mt-1 w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
@@ -107,12 +132,7 @@ export default function Signup() {
               <input
                 type={showPassword ? "text" : "password"}
                 placeholder="Choose a password"
-                className="
-                  w-full rounded-md
-                  border border-slate-300
-                  px-3 py-2 pr-10 text-sm
-                  focus:outline-none focus:ring-2 focus:ring-blue-500
-                "
+                className="w-full rounded-md border border-slate-300 px-3 py-2 pr-10 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
               <button
                 type="button"
@@ -122,25 +142,56 @@ export default function Signup() {
                 {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
               </button>
             </div>
-
-            <p className="mt-1 text-xs text-slate-500">
-              Minimum 8 characters, at least 1 number.
-            </p>
           </div>
 
           {/* CTA */}
-          <button
-            className="
-              mt-6 w-full rounded-md
-              bg-blue-600 py-3
-              text-white font-medium
-              hover:bg-blue-700 transition
-            "
-          >
+          <button className="mt-6 w-full rounded-md bg-blue-600 py-3 text-white font-medium hover:bg-blue-700 transition">
             Create account
           </button>
         </div>
       </div>
     </main>
+  );
+}
+
+/* ================= SUB COMPONENTS ================= */
+
+function ApiFlow({ leftIcon: Left, rightIcon: Right, label, color }) {
+  const colors = {
+    blue: "bg-blue-500",
+    pink: "bg-pink-500",
+  };
+
+  return (
+    <div className="flex flex-col items-center gap-4">
+      <div className="flex items-center gap-3">
+        <CircleIcon Icon={Left} className={colors[color]} />
+        <span className="text-slate-400 text-lg">→</span>
+        <CircleIcon Icon={Right} className={colors[color]} />
+      </div>
+
+      <p className="text-sm font-medium text-slate-700">{label}</p>
+    </div>
+  );
+}
+
+function SingleApi({ icon: Icon, label, color }) {
+  const colors = {
+    violet: "bg-violet-500",
+  };
+
+  return (
+    <div className="flex flex-col items-center gap-4">
+      <CircleIcon Icon={Icon} className={colors[color]} />
+      <p className="text-sm font-medium text-slate-700">{label}</p>
+    </div>
+  );
+}
+
+function CircleIcon({ Icon, className }) {
+  return (
+    <div className={`flex h-12 w-12 items-center justify-center rounded-full text-white ${className}`}>
+      <Icon className="h-5 w-5" />
+    </div>
   );
 }
