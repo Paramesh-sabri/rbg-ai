@@ -35,13 +35,14 @@ const FOOTER_ROUTES = {
 export default function Footer() {
   return (
     <footer className="bg-gradient-to-b from-white to-blue-50 border-t border-blue-100">
-      <div className="mx-auto max-w-7xl px-4 py-16">
+      <div className="mx-auto max-w-6xl px-4 py-16">
 
-        {/* TOP GRID */}
-        <div className="grid gap-12 md:grid-cols-5">
+        {/* ================= TOP GRID ================= */}
+        <div className="grid gap-12 md:grid-cols-5 text-center md:text-left">
 
           {/* BRAND */}
-          <div className="md:col-span-2">
+          <div className="md:col-span-2 flex flex-col items-center md:items-start md:pl-6">
+
             <h3 className="text-2xl font-extrabold text-slate-900">
               <span className="text-blue-600">RBG</span>.AI
             </h3>
@@ -75,7 +76,8 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* PRODUCT */}
+          {/* PRODUCT + SOLUTIONS + COMPANY */}
+        <div className="md:col-span-3 grid grid-cols-1 md:grid-cols-3 gap-12">
           <FooterCol
             title="Product"
             color="text-blue-600"
@@ -88,7 +90,6 @@ export default function Footer() {
             ]}
           />
 
-          {/* SOLUTIONS */}
           <FooterCol
             title="Solutions"
             color="text-emerald-600"
@@ -101,7 +102,6 @@ export default function Footer() {
             ]}
           />
 
-          {/* COMPANY */}
           <FooterCol
             title="Company"
             color="text-violet-600"
@@ -115,11 +115,13 @@ export default function Footer() {
           />
         </div>
 
-        {/* DIVIDER */}
+        </div>
+
+        {/* ================= DIVIDER ================= */}
         <div className="my-12 border-t border-blue-100" />
 
-        {/* BOTTOM */}
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        {/* ================= BOTTOM ================= */}
+        <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
           <p className="text-sm text-slate-500">
             © {new Date().getFullYear()} RBG.AI. All rights reserved.
           </p>
@@ -142,7 +144,7 @@ export default function Footer() {
 
 function FooterCol({ title, links, color }) {
   return (
-    <div>
+    <div className="flex flex-col items-center md:items-start">
       <h4 className={`text-sm font-semibold ${color}`}>
         {title}
       </h4>

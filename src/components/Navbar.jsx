@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { Menu, X, Search } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 
 import {
@@ -36,6 +36,7 @@ import logo from "../assets/rbg-logo.svg";
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
   const [query, setQuery] = useState("");
   const [searchOpen, setSearchOpen] = useState(false);
   const searchInputRef = useRef(null);
@@ -80,29 +81,32 @@ export default function Navbar() {
   };
 
   return (
-    <header className="relative w-full border-b border-slate-200 bg-white">
+    <header className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white ">
       {/* TOP BAR */}
-      <div className="mx-auto max-w-7xl px-4">
-        <div className="flex h-16 items-center justify-between">
+      <div className="mx-auto max-w-7xl px-6 ">
+        <div className="flex h-16 items-center justify-between ">
 
           {/* Logo */}
           <img
-            src={logo}
-            alt="RBG AI"
-            className="h-8 w-10 cursor-pointer"
-            onClick={() => {
-              setMobileOpen(false);
-            }}
-          />
+          src={logo}
+          alt="RBG AI"
+          className="h-10 w-10 cursor-pointer"
+          onClick={() => {
+            setMobileOpen(false);
+
+            if (location.pathname === "/" || location.pathname === "/home") {
+              // already on home → scroll to top
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            } else {
+              // not on home → navigate
+              navigate("/");
+            }
+          }}
+        />
+
 
           {/* DESKTOP NAV (UNCHANGED) */}
           <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-700">
-              {/* HOME */}
-          <button onClick={()=> navigate("/home")}
-            className="hover:text-blue-600 transition-colors"
-          >
-            Home
-          </button>
             <NavItem label="Products" open={productOpen}
               onEnter={() => { closeAll(); setProductOpen(true); }}
               onLeave={() => delayedClose(setProductOpen, "product")}

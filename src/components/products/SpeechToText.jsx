@@ -7,7 +7,7 @@ export default function SpeechToText() {
   const [mode, setMode] = useState("flux");
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-11/12 mx-auto mt-10 mb-10">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto mt-10 mb-10">
       
       {/* LEFT PANEL */}
       <div

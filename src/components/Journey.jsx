@@ -16,7 +16,7 @@ export default function Journey() {
         <div className="text-center">
           <h2 className="text-3xl sm:text-4xl font-bold text-slate-900">
             Choose your{" "}
-            <span className="text-blue-600">Voice AI journey</span>
+            <span className="bg-gradient-to-r from-blue-500 to-emerald-400 bg-clip-text text-transparent">Voice AI journey</span>
           </h2>
 
           <p className="mx-auto mt-4 max-w-2xl text-slate-600">
@@ -114,7 +114,7 @@ function JourneyCard({ icon, title, desc, sub, btn }) {
         bg-white
         px-8 pt-6 pb-8
         transition
-        hover:shadow-lg hover:-translate-y-0.5
+        hover:shadow-lg
       "
     >
       {/* ICON */}
@@ -151,8 +151,9 @@ function JourneyCard({ icon, title, desc, sub, btn }) {
           rounded-md bg-blue-600
           px-5 py-2.5
           text-sm font-semibold text-white
-          hover:bg-blue-500
+          hover:bg-blue-700
           transition
+          mt-3
         "
       >
         {btn}

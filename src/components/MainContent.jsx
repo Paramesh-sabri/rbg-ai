@@ -46,6 +46,25 @@ export default function MainContent() {
         </div>
 
       </div>
+      <div className="w-full bg-white py-24 px-6">
+  <div className="mx-auto max-w-4xl text-center">
+
+    <h2 className="text-4xl sm:text-5xl font-bold text-slate-900">
+      A single, unified{" "}
+      <span className="bg-gradient-to-r from-blue-500 to-emerald-400 bg-clip-text text-transparent">
+        Voice Agent API
+      </span>
+    </h2>
+
+    <p className="mt-6 text-lg leading-relaxed text-slate-600">
+      Instead of stitching together separate components, RBG.AI unifies
+      speech-to-text, text-to-speech, and LLM orchestration into a single API,
+      reducing complexity, latency, and cost.
+    </p>
+
+  </div>
+</div>
+
     </section>
   );
 }

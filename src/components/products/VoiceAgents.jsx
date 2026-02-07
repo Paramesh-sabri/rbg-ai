@@ -2,7 +2,7 @@ const PANEL_HEIGHT = "min-h-[260px] md:min-h-[320px]";
 
 export default function VoiceAgent() {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-11/12 mx-auto mt-10 mb-10">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto mt-10 mb-10">
 
       <div className={`flex flex-col items-center justify-center rounded-xl border border-slate-200 p-4 ${PANEL_HEIGHT}`}>
         <div className="h-40 w-40 rounded-full border-2 border-blue-600 flex items-center justify-center text-center text-blue-600 font-medium">
