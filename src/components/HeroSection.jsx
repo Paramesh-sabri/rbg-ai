@@ -8,7 +8,7 @@ export default function HeroSection() {
     <section className="relative bg-white">
       <div
         className="
-          mx-auto max-w-7xl
+          mx-auto max-w-6xl
           px-4 sm:px-6
           pt-20 pb-24
           sm:pt-24 sm:pb-32

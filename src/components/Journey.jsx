@@ -2,12 +2,10 @@ import {
   Code2,
   Plug,
   SlidersHorizontal,
-  ShieldCheck,
-  Cloud,
-  Cpu,
-  Lock,
   ArrowRight,
 } from "lucide-react";
+import enterpriseVisual from "../assets/enterprise-hero.png";
+
 
 export default function Journey() {
   return (
@@ -92,25 +90,12 @@ export default function Journey() {
           </div>
 
           {/* RIGHT ICON GRID */}
-          <div className="grid grid-cols-2 gap-6">
-
-            <ScaleCard
-              icon={ShieldCheck}
-              title="Enterprise-grade security"
+          <div className="flex justify-center">
+            <img
+              src={enterpriseVisual}
+              alt="Enterprise Voice AI visualization"
+              className="w-4/5 max-w-lg rounded-2xl"
             />
-            <ScaleCard
-              icon={Cloud}
-              title="Cloud & on-prem ready"
-            />
-            <ScaleCard
-              icon={Cpu}
-              title="High-performance AI"
-            />
-            <ScaleCard
-              icon={Lock}
-              title="Compliance-first design"
-            />
-
           </div>
         </div>
       </div>
@@ -133,7 +118,7 @@ function JourneyCard({ icon: Icon, title, desc, sub, btn }) {
       <p className="mt-1 text-sm font-medium text-slate-700">{desc}</p>
       <p className="mt-2 text-sm text-slate-500">{sub}</p>
 
-      <button className="mt-6 rounded-md bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-800">
+      <button className="mt-6 rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-500">
         {btn}
       </button>
     </div>

@@ -52,7 +52,7 @@ export default function TrustedAndFeedback() {
 
   return (
     <section className="bg-white px-4 py-20 overflow-hidden">
-      <div className="mx-auto max-w-7xl">
+      <div className="mx-auto max-w-6xl">
 
         {/* HEADER */}
         <div className="text-center">
@@ -67,6 +67,46 @@ export default function TrustedAndFeedback() {
         {/* ===== FEEDBACK RIVER ===== */}
         <div className="relative mt-16 overflow-hidden">
           <div className="flex gap-6 animate-river hover:[animation-play-state:paused]">
+
+            {[...feedbacks, ...feedbacks].map((item, i) => {
+              const c = colors[i % colors.length];
+
+              return (
+                <div
+                  key={i}
+                  className={`
+                    w-[320px] sm:w-[380px] max-w-[380px]
+                    rounded-xl border ${c.border}
+                    ${c.bg}
+                    p-6
+                    relative
+                    shadow-sm
+                  `}
+                >
+                  <div
+                    className={`absolute left-0 top-0 h-full w-1 rounded-l-xl ${c.border}`}
+                  />
+
+                  <p className="text-sm leading-relaxed text-slate-700">
+                    “{item.text}”
+                  </p>
+
+                  <div className="mt-6 border-t border-slate-200 pt-4">
+                    <p className="text-sm font-semibold text-slate-900">
+                      {item.name}
+                    </p>
+                    <p className={`text-xs font-medium ${c.text}`}>
+                      {item.role}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+        {/*---------------------------------------------------*/}
+        <div className="relative mt-16 overflow-hidden">
+          <div className="flex gap-6 animate-river-reverse hover:[animation-play-state:paused]">
 
             {[...feedbacks, ...feedbacks].map((item, i) => {
               const c = colors[i % colors.length];
@@ -138,10 +178,21 @@ export default function TrustedAndFeedback() {
           100% { transform: translateX(-50%); }
         }
 
+        @keyframes river-reverse {
+          0% { transform: translateX(-50%); }
+          100% { transform: translateX(0); }
+        }
+
         .animate-river {
           animation: river 35s linear infinite;
           width: max-content;
         }
+
+        .animate-river-reverse {
+          animation: river-reverse 35s linear infinite;
+          width: max-content;
+        }
+
       `}</style>
     </section>
   );

@@ -15,7 +15,7 @@ export default function MainContent() {
 
   return (
     <section className="bg-white px-4 py-6">
-      <div className="mx-auto max-w-5xl rounded-2xl border border-slate-200 p-5">
+      <div className="mx-auto max-w-6xl rounded-2xl border border-slate-200 p-5">
 
         {/* TOP TABS */}
         <div className="flex gap-3 flex-wrap">

@@ -3,7 +3,7 @@ import { Mail, Phone, Briefcase, ShieldCheck } from "lucide-react";
 export default function ContactUs() {
   return (
     <section className="bg-white">
-      <div className="mx-14 max-w-7xl px-4 py-16 grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <div className="mx-auto max-w-6xl px-4 py-16 grid grid-cols-1 lg:grid-cols-2 gap-12">
 
         {/* LEFT CONTENT */}
         <div>

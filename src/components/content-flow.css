@@ -1,6 +1,6 @@
 /* ROOT */
 .content-flow {
-  padding: 40px;
+  padding: 10px;
   color: #1f2937;
   font-family: Inter, system-ui, sans-serif;
   max-width: 1200px;
@@ -12,7 +12,7 @@
   display: grid;
   grid-template-columns: 260px 1fr;
   gap: 40px;
-  max-width: 1200px;
+  max-width: 1152px;
   margin: 0 auto;
   padding: 0 24px;
 }
