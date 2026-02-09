@@ -20,7 +20,7 @@ export default function ContactCenters() {
   return (
     <>
         <section className="bg-white px-6 py-28">
-            <div className="mx-auto max-w-5xl grid items-center gap-12 lg:grid-cols-[1.2fr_0.8fr]">
+            <div className="mx-auto max-w-6xl grid items-center gap-12 lg:grid-cols-[1.2fr_0.8fr]">
 
                 {/* LEFT CONTENT */}
                 <div>
@@ -64,8 +64,8 @@ export default function ContactCenters() {
             </section>
 
 
-    <section className="w-full bg-white py-20">
-      <div className="mx-auto max-w-7xl px-6">
+    <section className="w-full bg-white py-20 px-6">
+      <div className="mx-auto max-w-6xl">
         <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
           
           {/* Left content */}
@@ -109,8 +109,8 @@ export default function ContactCenters() {
         </div>
       </div>
     </section>
-    <section className="w-full bg-white py-20">
-      <div className="mx-auto max-w-7xl px-6">
+    <section className="w-full bg-white py-20 px-6">
+      <div className="mx-auto max-w-7xl">
         <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
           
           {/* Left visual */}
@@ -145,8 +145,8 @@ export default function ContactCenters() {
         </div>
       </div>
     </section>
-    <section className="w-full bg-white py-20">
-      <div className="mx-auto max-w-7xl px-6">
+    <section className="w-full bg-white py-20 px-6">
+      <div className="mx-auto max-w-6xl">
         <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
           
           {/* Left content */}
