@@ -123,6 +123,29 @@ export default function HeroSection() {
           </button>
         </div>
       </div>
+      <div className="w-full bg-white py-16 px-6">
+        <div className="max-w-6xl mx-auto">
+          <p className="text-center text-sm font-medium text-slate-500 mb-10">
+            Trusted by teams building voice-first experiences
+          </p>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-8 items-center justify-items-center">
+            <span className="text-slate-400 font-semibold text-lg">twilio</span>
+            <span className="text-slate-400 font-semibold text-lg">cloudflare</span>
+            <span className="text-slate-400 font-semibold text-lg">sierra</span>
+            <span className="text-slate-400 font-semibold text-lg">daily</span>
+            <span className="text-slate-400 font-semibold text-lg">cresta</span>
+            <span className="text-slate-400 font-semibold text-lg">granola</span>
+
+            <span className="text-slate-400 font-semibold text-lg">vapi</span>
+            <span className="text-slate-400 font-semibold text-lg">decagon</span>
+            <span className="text-slate-400 font-semibold text-lg">kore.ai</span>
+            <span className="text-slate-400 font-semibold text-lg">nice cognigy</span>
+            <span className="text-slate-400 font-semibold text-lg">coval</span>
+          </div>
+        </div>
+      </div>
+
     </section>
   );
 }
