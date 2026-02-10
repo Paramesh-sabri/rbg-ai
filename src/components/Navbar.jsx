@@ -121,19 +121,19 @@ export default function Navbar() {
               <SolutionsDropdown />
             </NavItem>
 
-            <NavItem label="Resources" open={resourcesOpen}
+            {/* <NavItem label="Resources" open={resourcesOpen}
               onEnter={() => { closeAll(); setResourcesOpen(true); }}
               onLeave={() => delayedClose(setResourcesOpen, "resources")}
             >
               <ResourcesDropdown />
-            </NavItem>
+            </NavItem> */}
 
-            <NavItem label="Devs" open={devsOpen}
-              onEnter={() => { closeAll(); setDevsOpen(true); }}
-              onLeave={() => delayedClose(setDevsOpen, "devs")}
-            >
-              <DevsDropdown />
-            </NavItem>
+              {/* <NavItem label="Devs" open={devsOpen}
+                onEnter={() => { closeAll(); setDevsOpen(true); }}
+                onLeave={() => delayedClose(setDevsOpen, "devs")}
+              >
+                <DevsDropdown />
+              </NavItem> */}
 
             <button 
             onClick={
@@ -240,7 +240,8 @@ export default function Navbar() {
 
       {/* ===== MOBILE FULLSCREEN OVERLAY ===== */}
       {mobileOpen && (
-        <div className="fixed inset-0 z-[999] bg-white md:hidden">
+        <div className="fixed inset-0 z-[999] bg-white md:hidden h-screen overflow-hidden">
+
           <div className="flex h-16 items-center justify-between px-4 border-b">
             <img src={logo} alt="RBG AI" className="h-8 w-auto" />
             <button onClick={() => setMobileOpen(false)}>
@@ -248,7 +249,8 @@ export default function Navbar() {
             </button>
           </div>
 
-          <div className="overflow-y-auto px-4 py-4 space-y-4">
+          <div className="h-[calc(100vh-4rem)] overflow-y-auto px-4 py-4 space-y-4">
+
 
             {/* HOME */}
             <button
@@ -262,33 +264,44 @@ export default function Navbar() {
             </button>
 
             <MobileSection title="Products">
-              <MobileProduct />
+              <MobileProduct close={() => setMobileOpen(false)} />
             </MobileSection>
 
             <MobileSection title="Solutions">
-              <MobileSolutions />
+              <MobileSolutions close={() => setMobileOpen(false)} />
             </MobileSection>
 
-            <MobileSection title="Resources">
+
+            {/* <MobileSection title="Resources">
               <MobileResources />
             </MobileSection>
 
             <MobileSection title="Devs">
               <MobileDevs />
-            </MobileSection>
+            </MobileSection> */}
 
             {/* STATIC LINKS */}
             <button
+              onClick={() => {
+                setMobileOpen(false);
+                navigate("/enterprise");
+              }}
               className="w-full text-left py-3 font-medium text-slate-800"
             >
               Enterprise
             </button>
 
+
             <button
+              onClick={() => {
+                setMobileOpen(false);
+                navigate("/pricing");
+              }}
               className="w-full text-left py-3 font-medium text-slate-800"
             >
               Pricing
             </button>
+
 
             <button
               onClick={() => {
@@ -453,95 +466,95 @@ const SolutionCard = ({ icon: Icon, title }) => (
 );
 
 
-function ResourcesDropdown() {
-  return (
-    <div className="absolute left-1/2 top-full mt-4 w-[460px] -translate-x-1/2 rounded-2xl border bg-white shadow-xl z-50">
-      <div className="grid grid-cols-2 gap-6 p-6">
-        <ul className="space-y-3">
-          <ResourceItem icon={BookOpen} label="Blog" />
-          <ResourceItem icon={Mic} label="Podcast" />
-          <ResourceItem icon={Layers} label="Resource Hub" />
-          <ResourceItem icon={Info} label="AI Glossary" />
-          <ResourceItem icon={Briefcase} label="Careers" />
-        </ul>
+// function ResourcesDropdown() {
+//   return (
+//     <div className="absolute left-1/2 top-full mt-4 w-[460px] -translate-x-1/2 rounded-2xl border bg-white shadow-xl z-50">
+//       <div className="grid grid-cols-2 gap-6 p-6">
+//         <ul className="space-y-3">
+//           <ResourceItem icon={BookOpen} label="Blog" />
+//           <ResourceItem icon={Mic} label="Podcast" />
+//           <ResourceItem icon={Layers} label="Resource Hub" />
+//           <ResourceItem icon={Info} label="AI Glossary" />
+//           <ResourceItem icon={Briefcase} label="Careers" />
+//         </ul>
 
-        <div className="grid gap-4">
-          <ResourceCard title="AI Minds" desc="Insights from AI leaders." />
-          <ResourceCard title="AI Voice Generator" desc="Create realistic AI voices." />
-          <ResourceCard title="Transcription Tool" desc="Speech to text instantly." />
-        </div>
-      </div>
-    </div>
-  );
-}
+//         <div className="grid gap-4">
+//           <ResourceCard title="AI Minds" desc="Insights from AI leaders." />
+//           <ResourceCard title="AI Voice Generator" desc="Create realistic AI voices." />
+//           <ResourceCard title="Transcription Tool" desc="Speech to text instantly." />
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
 
-const ResourceItem = ({ icon: Icon, label }) => (
-  <li className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-100 cursor-pointer">
-    <Icon className="h-5 w-5 text-slate-500" />
-    <span>{label}</span>
-  </li>
-);
+// const ResourceItem = ({ icon: Icon, label }) => (
+//   <li className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-100 cursor-pointer">
+//     <Icon className="h-5 w-5 text-slate-500" />
+//     <span>{label}</span>
+//   </li>
+// );
 
-const ResourceCard = ({ title, desc }) => (
-  <div className="p-4 border rounded-xl hover:shadow-md cursor-pointer">
-    <p className="font-medium">{title}</p>
-    <p className="text-sm text-slate-500">{desc}</p>
-  </div>
-);
+// const ResourceCard = ({ title, desc }) => (
+//   <div className="p-4 border rounded-xl hover:shadow-md cursor-pointer">
+//     <p className="font-medium">{title}</p>
+//     <p className="text-sm text-slate-500">{desc}</p>
+//   </div>
+// );
 
-function DevsDropdown() {
-  return (
-    <div className="fixed left-1/2 top-16 w-[55vw] max-w-4xl -translate-x-1/2 rounded-2xl bg-white p-6 shadow-xl ring-1 ring-black/5 z-50">
-      <div className="grid grid-cols-[150px_230px_200px] gap-8">
+// function DevsDropdown() {
+//   return (
+//     <div className="fixed left-1/2 top-16 w-[55vw] max-w-4xl -translate-x-1/2 rounded-2xl bg-white p-6 shadow-xl ring-1 ring-black/5 z-50">
+//       <div className="grid grid-cols-[150px_230px_200px] gap-8">
 
-        <div className="space-y-3">
-          <DevItem icon={Book} label="Documentation" />
-          <DevItem icon={GraduationCap} label="Tutorials" />
-          <DevItem icon={Activity} label="Status" />
-        </div>
+//         <div className="space-y-3">
+//           <DevItem icon={Book} label="Documentation" />
+//           <DevItem icon={GraduationCap} label="Tutorials" />
+//           <DevItem icon={Activity} label="Status" />
+//         </div>
 
-        <div className="space-y-3">
-          <DevItem icon={FileText} label="Changelog" />
-          <DevItem icon={Server} label="Self-Hosted Deployment" />
-          <DevItem icon={HelpCircle} label="Help" />
-        </div>
+//         <div className="space-y-3">
+//           <DevItem icon={FileText} label="Changelog" />
+//           <DevItem icon={Server} label="Self-Hosted Deployment" />
+//           <DevItem icon={HelpCircle} label="Help" />
+//         </div>
 
-        <div className="space-y-4">
-          <DevCard icon={Sparkles} title="Playground" highlight />
-          <div onClick={() => window.open("https://github.com/rbg-research", "_blank")}>
-            <DevCard
-            icon={Github}
-            title="Community"
-          />
-          </div>
+//         <div className="space-y-4">
+//           <DevCard icon={Sparkles} title="Playground" highlight />
+//           <div onClick={() => window.open("https://github.com/rbg-research", "_blank")}>
+//             <DevCard
+//             icon={Github}
+//             title="Community"
+//           />
+//           </div>
           
 
-        </div>
+//         </div>
 
-      </div>
-    </div>
-  );
-}
+//       </div>
+//     </div>
+//   );
+// }
 
-const DevItem = ({ icon: Icon, label }) => (
-  <div className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-100 cursor-pointer">
-    <Icon className="h-5 w-5 text-slate-500" />
-    <span className="text-sm font-medium">{label}</span>
-  </div>
-);
+// const DevItem = ({ icon: Icon, label }) => (
+//   <div className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-100 cursor-pointer">
+//     <Icon className="h-5 w-5 text-slate-500" />
+//     <span className="text-sm font-medium">{label}</span>
+//   </div>
+// );
 
-const DevCard = ({ icon: Icon, title, highlight }) => (
-  <div
-    className={`flex items-center gap-4 rounded-xl border p-4 hover:shadow-md cursor-pointer ${
-      highlight
-        ? "border-blue-500/30 bg-blue-50 text-blue-700"
-        : "border-slate-200 bg-slate-50"
-    }`}
-  >
-    <Icon className="h-6 w-6" />
-    <span className="font-semibold">{title}</span>
-  </div>
-);
+// const DevCard = ({ icon: Icon, title, highlight }) => (
+//   <div
+//     className={`flex items-center gap-4 rounded-xl border p-4 hover:shadow-md cursor-pointer ${
+//       highlight
+//         ? "border-blue-500/30 bg-blue-50 text-blue-700"
+//         : "border-slate-200 bg-slate-50"
+//     }`}
+//   >
+//     <Icon className="h-6 w-6" />
+//     <span className="font-semibold">{title}</span>
+//   </div>
+// );
 
 /* ================= MOBILE ================= */
 
@@ -554,59 +567,83 @@ function MobileSection({ title, children }) {
         className="flex w-full justify-between py-4 font-medium"
       >
         {title}
-        <span className={`${open ? "rotate-180" : ""}`}>▼</span>
+        <span className={`transition-transform ${open ? "rotate-180" : ""}`}>▼</span>
+
       </button>
       {open && <div className="pb-4 space-y-2">{children}</div>}
     </div>
   );
 }
 
-function MobileItem({ icon: Icon, label }) {
+function MobileItem({ icon: Icon, label, to, close }) {
+  const navigate = useNavigate();
+
   return (
-    <div className="flex items-center gap-3 py-2">
+    <button
+      onClick={() => {
+        close?.();
+        if (to) navigate(to);
+      }}
+      className="
+        flex w-full items-center gap-3
+        rounded-md px-2 py-2
+        text-left
+        hover:bg-slate-100
+        active:bg-slate-200
+      "
+    >
       <Icon className="h-5 w-5 text-slate-500" />
-      <span>{label}</span>
-    </div>
+      <span className="text-sm font-medium text-slate-800">
+        {label}
+      </span>
+    </button>
   );
 }
 
-function MobileProduct() {
+
+
+function MobileProduct({ close }) {
   return (
     <>
-      <MobileItem icon={Mic} label="Speech-to-Text" />
-      <MobileItem icon={FileAudio} label="Audio Intelligence" />
-      <MobileItem icon={MessageCircle} label="Conversational AI" />
-      <MobileItem icon={Headphones} label="Voice Agents" />
+      <MobileItem icon={Mic} label="Speech-to-Text" to="/speech_to_text" close={close} />
+      <MobileItem icon={MessageCircle} label="Conversational AI" to="/text_to_speech" close={close} />
+      <MobileItem icon={Headphones} label="Voice Agents" to="/voice_agents" close={close} />
+      <MobileItem icon={FileAudio} label="Audio Intelligence" to="/audio_intelligence" close={close} />
     </>
   );
 }
 
-function MobileSolutions() {
+
+
+function MobileSolutions({ close }) {
   return (
     <>
-      <MobileItem icon={Phone} label="Contact Centers" />
-      <MobileItem icon={HeartPulse} label="Healthcare Voice AI" />
-      <MobileItem icon={Utensils} label="Restaurants" />
+      <MobileItem icon={Phone} label="Contact Centers" to="/contactcenters" close={close} />
+      <MobileItem icon={MessageSquare} label="Conversational AI" to="/convai" close={close} />
+      <MobileItem icon={BarChart3} label="Speech Analytics" to="/speechanalytics" close={close} />
+      <MobileItem icon={Play} label="Media Transcription" to="/mediatranscription" close={close} />
     </>
   );
 }
 
-function MobileResources() {
-  return (
-    <>
-      <MobileItem icon={BookOpen} label="Blog" />
-      <MobileItem icon={Mic} label="Podcast" />
-      <MobileItem icon={Layers} label="Resource Hub" />
-    </>
-  );
-}
 
-function MobileDevs() {
-  return (
-    <>
-      <MobileItem icon={Book} label="Documentation" />
-      <MobileItem icon={GraduationCap} label="Tutorials" />
-      <MobileItem icon={Sparkles} label="Playground" />
-    </>
-  );
-}
+
+// function MobileResources() {
+//   return (
+//     <>
+//       <MobileItem icon={BookOpen} label="Blog" />
+//       <MobileItem icon={Mic} label="Podcast" />
+//       <MobileItem icon={Layers} label="Resource Hub" />
+//     </>
+//   );
+// }
+
+// function MobileDevs() {
+//   return (
+//     <>
+//       <MobileItem icon={Book} label="Documentation" />
+//       <MobileItem icon={GraduationCap} label="Tutorials" />
+//       <MobileItem icon={Sparkles} label="Playground" />
+//     </>
+//   );
+// }
