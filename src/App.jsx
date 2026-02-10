@@ -16,6 +16,8 @@ import VoiceAgent from "./components/products/VoiceAgents";
 import AudioIntelligence from "./components/products/AudioIntelligence";
 import ContactCenters from "./components/solutions/ContactCenters";
 import ConvAi from "./components/solutions/ConvAi";
+import SpeechAnalytics from "./components/solutions/SpeechAnalytics";
+import MediaTranscription from "./components/solutions/MediaTranscription";
 
 export default function App() {
   return (
@@ -38,6 +40,9 @@ export default function App() {
         <Route path="/audio_intelligence" element={<AudioIntelligence />} />
         <Route path="/contactcenters" element={<ContactCenters />} />
         <Route path="/convai" element={<ConvAi />} />
+        <Route path="/speechanalytics" element={<SpeechAnalytics />} />
+        <Route path="/mediatranscription" element={<MediaTranscription/>} />
+
       </Routes>
 
       <Footer />

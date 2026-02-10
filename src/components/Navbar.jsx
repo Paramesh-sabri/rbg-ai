@@ -412,12 +412,9 @@ function SolutionsDropdown() {
           <div className="space-y-2">
 
             <SolutionItem onClick={()=>navigate("/contactcenters")} icon={Phone} label="Contact Centers" />
-            <SolutionItem icon={HeartPulse} label="Healthcare Voice AI" />
-            <SolutionItem icon={FileText} label="Medical Transcription" />
             <SolutionItem onClick={()=>navigate("/convai")} icon={MessageSquare} label="Conversational AI" />
-            <SolutionItem icon={Utensils} label="Restaurants" />
-            <SolutionItem icon={BarChart3} label="Speech Analytics" />
-            <SolutionItem icon={Play} label="Media Transcription" />
+            <SolutionItem onClick={()=>navigate("/speechanalytics")} icon={BarChart3} label="Speech Analytics" />
+            <SolutionItem onClick={()=>navigate("/mediatranscription")} icon={Play} label="Media Transcription" />
           </div>
         </div>
 

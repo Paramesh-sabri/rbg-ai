@@ -110,11 +110,11 @@ export default function ContactCenters() {
       </div>
     </section>
     <section className="w-full bg-white py-20 px-6">
-      <div className="mx-auto max-w-7xl">
+      <div className="mx-auto max-w-6xl">
         <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
           
           {/* Left visual */}
-          <div className="flex justify-center">
+          <div>
             <img
               src={auraVisual}
               alt="Aura text-to-speech model visualization"
@@ -123,7 +123,7 @@ export default function ContactCenters() {
           </div>
 
           {/* Right content */}
-          <div>
+          <div className="mr-10">
             <h2 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
               Let your AI agents do the talking
             </h2>
