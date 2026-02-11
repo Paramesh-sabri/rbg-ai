@@ -90,38 +90,20 @@ export default function Pricing() {
             </p>
           </div>
 
-          <div className="mt-16 overflow-x-auto flex justify-center">
-            <table className="w-4/5 border border-slate-200 rounded-xl overflow-hidden">
-              <thead className="bg-slate-50">
-                <tr>
-                  <th className="px-6 py-4 text-left text-sm font-semibold">Tier</th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold">Pay As You Go</th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold">Growth</th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold">Enterprise</th>
-                </tr>
-              </thead>
-
-              <tbody className="divide-y">
-                {[
-                  ["Standard", "$0.0800 / min", "$0.0700 / min"],
-                  ["Standard – BYO TTS", "$0.0600 / min", "$0.0500 / min"],
-                  ["Custom – BYO LLM", "$0.0700 / min", "$0.0600 / min"],
-                  ["Custom – BYO LLM + TTS", "$0.0500 / min", "$0.0400 / min"],
-                  ["Advanced", "$0.1600 / min", "$0.1500 / min"],
-                  ["Advanced – BYO TTS", "$0.1200 / min", "$0.1100 / min"],
-                ].map(([tier, payg, growth], i) => (
-                  <tr key={i} className="hover:bg-slate-50">
-                    <td className="px-6 py-4 font-medium">{tier}</td>
-                    <td className="px-6 py-4">{payg}</td>
-                    <td className="px-6 py-4">{growth}</td>
-                    <td className="px-6 py-4 text-blue-600 font-medium cursor-pointer">
-                      Contact Sales
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          <div className="mt-16">
+            <ResponsivePricingTable
+              columns={["Tier", "Pay As You Go", "Growth", "Enterprise"]}
+              data={[
+                ["Standard", "$0.0800 / min", "$0.0700 / min", "CTA"],
+                ["Standard – BYO TTS", "$0.0600 / min", "$0.0500 / min", "CTA"],
+                ["Custom – BYO LLM", "$0.0700 / min", "$0.0600 / min", "CTA"],
+                ["Custom – BYO LLM + TTS", "$0.0500 / min", "$0.0400 / min", "CTA"],
+                ["Advanced", "$0.1600 / min", "$0.1500 / min", "CTA"],
+                ["Advanced – BYO TTS", "$0.1200 / min", "$0.1100 / min", "CTA"],
+              ]}
+            />
           </div>
+
 
         </div>
       </section>
@@ -148,53 +130,19 @@ export default function Pricing() {
             </div>
 
             {/* TABLE */}
-            <div className="mt-16 overflow-x-auto flex justify-center">
-            <table className="w-full max-w-5xl border border-slate-200 rounded-xl overflow-hidden">
-                <thead className="bg-slate-50">
-                <tr>
-                    <th className="px-6 py-4 text-left text-sm font-semibold">
-                    Model
-                    </th>
-                    <th className="px-6 py-4 text-left text-sm font-semibold">
-                    Pay As You Go
-                    </th>
-                    <th className="px-6 py-4 text-left text-sm font-semibold">
-                    Growth
-                    </th>
-                    <th className="px-6 py-4 text-left text-sm font-semibold">
-                    Enterprise
-                    </th>
-                </tr>
-                </thead>
+           <div className="mt-16">
+            <ResponsivePricingTable
+              columns={["Model", "Pay As You Go", "Growth", "Enterprise"]}
+              data={[
+                ["Standard", "$0.000015 / char", "$0.000012 / char", "CTA"],
+                ["Standard – BYO Voice", "$0.000012 / char", "$0.000010 / char", "CTA"],
+                ["Neural", "$0.000020 / char", "$0.000017 / char", "CTA"],
+                ["Neural – BYO Voice", "$0.000017 / char", "$0.000014 / char", "CTA"],
+                ["Custom Voice", "—", "—", "CTA"],
+              ]}
+            />
+          </div>
 
-                <tbody className="divide-y divide-slate-200">
-                {[
-                    ["Standard", "$0.000015 / char", "$0.000012 / char"],
-                    ["Standard – BYO Voice", "$0.000012 / char", "$0.000010 / char"],
-                    ["Neural", "$0.000020 / char", "$0.000017 / char"],
-                    ["Neural – BYO Voice", "$0.000017 / char", "$0.000014 / char"],
-                    ["Custom Voice", "—", "—"],
-                ].map(([model, payg, growth], i) => (
-                    <tr key={i} className="hover:bg-slate-50 transition">
-                    <td className="px-6 py-4 text-sm font-medium">
-                        {model}
-                    </td>
-                    <td className="px-6 py-4 text-sm text-slate-700">
-                        {payg}
-                    </td>
-                    <td className="px-6 py-4 text-sm text-slate-700">
-                        {growth}
-                    </td>
-                    <td className="px-6 py-4 text-sm">
-                        <span className="text-blue-600 font-medium cursor-pointer hover:underline">
-                        Contact Sales
-                        </span>
-                    </td>
-                    </tr>
-                ))}
-                </tbody>
-            </table>
-            </div>
 
         </div>
         </section>
@@ -216,50 +164,16 @@ export default function Pricing() {
                 </div>
 
                 {/* TABLE */}
-                <div className="mt-14 flex justify-center overflow-x-auto">
-                <table className="w-full max-w-5xl border border-slate-200 rounded-xl overflow-hidden">
-                    <thead className="bg-slate-50">
-                    <tr>
-                        <th className="px-6 py-4 text-left text-sm font-semibold">
-                        Model
-                        </th>
-                        <th className="px-6 py-4 text-left text-sm font-semibold">
-                        Pay As You Go
-                        </th>
-                        <th className="px-6 py-4 text-left text-sm font-semibold">
-                        Growth
-                        </th>
-                        <th className="px-6 py-4 text-left text-sm font-semibold">
-                        Enterprise
-                        </th>
-                    </tr>
-                    </thead>
-
-                    <tbody className="divide-y divide-slate-200">
-                    <tr className="hover:bg-slate-50 transition">
-                        <td className="px-6 py-4 font-medium">Aura-2</td>
-                        <td className="px-6 py-4">$0.030 / 1k characters</td>
-                        <td className="px-6 py-4">$0.027 / 1k characters</td>
-                        <td className="px-6 py-4">
-                        <span className="text-blue-600 font-medium cursor-pointer hover:underline">
-                            Contact Sales
-                        </span>
-                        </td>
-                    </tr>
-
-                    <tr className="hover:bg-slate-50 transition">
-                        <td className="px-6 py-4 font-medium">Aura-1</td>
-                        <td className="px-6 py-4">$0.0150 / 1k characters</td>
-                        <td className="px-6 py-4">$0.0135 / 1k characters</td>
-                        <td className="px-6 py-4">
-                        <span className="text-blue-600 font-medium cursor-pointer hover:underline">
-                            Contact Sales
-                        </span>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+                <div className="mt-14">
+                  <ResponsivePricingTable
+                    columns={["Model", "Pay As You Go", "Growth", "Enterprise"]}
+                    data={[
+                      ["Aura-2", "$0.030 / 1k characters", "$0.027 / 1k characters", "CTA"],
+                      ["Aura-1", "$0.015 / 1k characters", "$0.0135 / 1k characters", "CTA"],
+                    ]}
+                  />
                 </div>
+
 
                 {/* FOOTNOTE */}
                 <p className="mt-4 text-center text-sm text-slate-500">
@@ -310,68 +224,37 @@ export default function Pricing() {
                 </div>
 
                 {/* TABLE */}
-                <div className="mt-16 flex justify-center overflow-x-auto">
-                <table className="w-full max-w-5xl border border-slate-200 rounded-xl overflow-hidden">
-                    <thead className="bg-slate-50">
-                    <tr>
-                        <th className="px-6 py-4 text-left text-sm font-semibold">
-                        Model
-                        </th>
-                        <th className="px-6 py-4 text-left text-sm font-semibold">
-                        Pay As You Go
-                        </th>
-                        <th className="px-6 py-4 text-left text-sm font-semibold">
-                        Growth
-                        </th>
-                        <th className="px-6 py-4 text-left text-sm font-semibold">
-                        Enterprise
-                        </th>
-                    </tr>
-                    </thead>
-
-                    <tbody className="divide-y divide-slate-200">
-                    {[
-                        [
-                        "Summarization",
-                        "$0.0003 / 1k input tokens – $0.0006 / 1k output tokens",
-                        "$0.00024 / 1k input tokens – $0.00048 / 1k output tokens",
-                        ],
-                        [
-                        "Topic Detection",
-                        "$0.0003 / 1k input tokens – $0.0006 / 1k output tokens",
-                        "$0.00024 / 1k input tokens – $0.00048 / 1k output tokens",
-                        ],
-                        [
-                        "Sentiment Analysis",
-                        "$0.0003 / 1k input tokens – $0.0006 / 1k output tokens",
-                        "$0.00024 / 1k input tokens – $0.00048 / 1k output tokens",
-                        ],
-                        [
-                        "Intent Recognition",
-                        "$0.0003 / 1k input tokens – $0.0006 / 1k output tokens",
-                        "$0.00024 / 1k input tokens – $0.00048 / 1k output tokens",
-                        ],
-                    ].map(([model, payg, growth], i) => (
-                        <tr key={i} className="hover:bg-slate-50 transition">
-                        <td className="px-6 py-4 font-medium">
-                            {model}
-                        </td>
-                        <td className="px-6 py-4 text-sm text-slate-700">
-                            {payg}
-                        </td>
-                        <td className="px-6 py-4 text-sm text-slate-700">
-                            {growth}
-                        </td>
-                        <td className="px-6 py-4">
-                            <span className="text-blue-600 font-medium cursor-pointer hover:underline">
-                            Contact Sales
-                            </span>
-                        </td>
-                        </tr>
-                    ))}
-                    </tbody>
-                </table>
-                </div>
+               <div className="mt-16">
+                <ResponsivePricingTable
+                  columns={["Model", "Pay As You Go", "Growth", "Enterprise"]}
+                  data={[
+                    [
+                      "Summarization",
+                      "$0.0003 / 1k input – $0.0006 / output",
+                      "$0.00024 / 1k input – $0.00048 / output",
+                      "CTA",
+                    ],
+                    [
+                      "Topic Detection",
+                      "$0.0003 / 1k input – $0.0006 / output",
+                      "$0.00024 / 1k input – $0.00048 / output",
+                      "CTA",
+                    ],
+                    [
+                      "Sentiment Analysis",
+                      "$0.0003 / 1k input – $0.0006 / output",
+                      "$0.00024 / 1k input – $0.00048 / output",
+                      "CTA",
+                    ],
+                    [
+                      "Intent Recognition",
+                      "$0.0003 / 1k input – $0.0006 / output",
+                      "$0.00024 / 1k input – $0.00048 / output",
+                      "CTA",
+                    ],
+                  ]}
+                />
+              </div>
 
                 {/* FOOTNOTE */}
                 <p className="mt-4 text-center text-sm text-slate-500">
@@ -448,5 +331,76 @@ function PlanCard({ title, price, desc, features, cta, highlight }) {
         {cta}
       </button>
     </div>
+  );
+}
+
+function ResponsivePricingTable({ columns, data }) {
+  return (
+    <>
+      {/* DESKTOP TABLE */}
+      <div className="hidden md:flex justify-center overflow-x-auto">
+        <table className="w-full max-w-5xl border border-slate-200 rounded-xl overflow-hidden">
+          <thead className="bg-slate-50">
+            <tr>
+              {columns.map((col, i) => (
+                <th
+                  key={i}
+                  className="px-6 py-4 text-left text-sm font-semibold"
+                >
+                  {col}
+                </th>
+              ))}
+            </tr>
+          </thead>
+
+          <tbody className="divide-y divide-slate-200">
+            {data.map((row, i) => (
+              <tr key={i} className="hover:bg-slate-50 transition">
+                {row.map((cell, j) => (
+                  <td key={j} className="px-6 py-4 text-sm">
+                    {cell === "CTA" ? (
+                      <span className="text-blue-600 font-medium cursor-pointer hover:underline">
+                        Contact Sales
+                      </span>
+                    ) : (
+                      cell
+                    )}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      {/* MOBILE CARDS */}
+      <div className="md:hidden space-y-6">
+        {data.map((row, i) => (
+          <div
+            key={i}
+            className="border border-slate-200 rounded-xl p-5 shadow-sm"
+          >
+            <h3 className="text-lg font-semibold mb-4">
+              {row[0]}
+            </h3>
+
+            <div className="space-y-3 text-sm text-slate-700">
+              {columns.slice(1).map((col, j) => (
+                <div key={j}>
+                  <p className="font-medium text-slate-900">{col}</p>
+                  {row[j + 1] === "CTA" ? (
+                    <span className="text-blue-600 font-medium hover:underline cursor-pointer">
+                      Contact Sales
+                    </span>
+                  ) : (
+                    <p>{row[j + 1]}</p>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </>
   );
 }
